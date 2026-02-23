@@ -1,0 +1,57 @@
+# =============================================================================
+# CATERYA Agentic Enterprise — requirements.txt
+# For Streamlit Cloud deployment (Python 3.12/3.13 compatible)
+# Author: Ary HH (Caterya Tech) <aryhharyanto@proton.me>
+#
+# NOTE: solana & solders excluded — Python 3.13 incompatible.
+#       Solana ops use pure JSON-RPC over HTTP (no SDK needed).
+#       bitcoinlib excluded too (C extension issues on cloud).
+#       Crypto ops on Streamlit Cloud = invoice generation + HTTP verify only.
+#       For full on-chain ops, run locally with Docker.
+# =============================================================================
+
+# ── LLM & Agentic Core ──────────────────────────────────────────────────────
+langchain>=0.3.0
+langchain-community>=0.3.0
+langchain-ollama>=0.2.0
+langchain-openai>=0.2.0
+langgraph>=0.2.0
+
+# ── Dashboard ────────────────────────────────────────────────────────────────
+streamlit>=1.40.0
+
+# ── Databases & State ────────────────────────────────────────────────────────
+redis>=5.0.0
+psycopg2-binary>=2.9.9
+sqlalchemy>=2.0.0
+
+# ── Crypto — Pure Python only (no C extensions that break on Py3.13) ─────────
+cryptography>=43.0.0
+eth-account>=0.13.0
+web3>=7.0.0
+# solana → replaced by pure JSON-RPC in crypto_manager.py
+# solders → same, no Py3.13 wheel
+# bitcoinlib → optional, install locally only
+
+# ── HTTP & Networking ────────────────────────────────────────────────────────
+httpx>=0.27.0
+requests>=2.32.0
+aiohttp>=3.10.0
+
+# ── Core Utilities ───────────────────────────────────────────────────────────
+pydantic>=2.8.0
+python-dotenv>=1.0.0
+rich>=13.8.0
+
+# ── Export / Reports ─────────────────────────────────────────────────────────
+reportlab>=4.0.0
+openpyxl>=3.1.5
+argon2-cffi>=23.1.0
+
+# ── Testing ──────────────────────────────────────────────────────────────────
+pytest>=8.3.0
+pytest-asyncio>=0.24.0
+
+# ── Export / File Generation ─────────────────────────────────────────────────
+reportlab>=4.0.0
+openpyxl>=3.1.5
